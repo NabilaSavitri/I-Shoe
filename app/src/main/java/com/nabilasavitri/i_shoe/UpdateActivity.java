@@ -57,15 +57,15 @@ public class UpdateActivity extends AppCompatActivity {
                     tambahUpdate = false;
                     binding.etWarna.setError("Warna tidak boleh kosong!");
                 }
-                if (TextUtils.isEmpty(UkuranSepatu)) {
+                if (UkuranSepatu == 0) {
                     tambahUpdate = false;
                     binding.etUkuran.setError("Ukuran tidak boleh kosong!");
                 }
-                if (TextUtils.isEmpty(JumlahSepatu)) {
+                if (JumlahSepatu == 0) {
                     tambahUpdate = false;
                     binding.etJumlah.setError("Jumlah tidak boleh kosong!");
                 }
-                if (TextUtils.isEmpty(HargaSepatu)) {
+                if (HargaSepatu == 0) {
                     tambahUpdate = false;
                     binding.etHarga.setError("Harga tidak boleh kosong!");
                 }
