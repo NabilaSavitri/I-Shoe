@@ -29,6 +29,37 @@
             tools:text="NamaMerekSepatu"/>
 
         <TextView
+            android:id="@+id/tv_ModelSepatu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="ModelSepatu"/>
+
+        <TextView
+            android:id="@+id/tv_JenisSepatu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="JenisSepatu"/>
+        <TextView
+            android:id="@+id/tv_WarnaSepatu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="WarnaSepatu"/>
+
+        <TextView
+            android:id="@+id/tv_UkuranSepatu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="UkuranSepatu"/>
+
+        <TextView
             android:id="@+id/tv_JumlahSepatu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,13 +68,13 @@
             android:text="JumlahSepatu"/>
 
         <TextView
-            android:id="@+id/tv_created_date"
+            android:id="@+id/tv_HargaPerPcsSepatu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_JumlahSepatu"
+            android:layout_below="@+id/tv_NamaMerekSepatu"
             android:layout_marginTop="2dp"
-            android:textAlignment="textEnd"
-            tools:text="01-01-2023 20:20:00"/>
+            android:text="HargaPerPcsSepatu"/>
+
     </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

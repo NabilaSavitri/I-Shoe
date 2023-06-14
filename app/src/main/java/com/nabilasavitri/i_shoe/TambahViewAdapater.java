@@ -1,6 +1,7 @@
 package com.nabilasavitri.i_shoe;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -21,15 +22,11 @@ public class TambahViewAdapater extends RecyclerView.Adapter<TambahViewAdapater.
     @NonNull
     @Override
     public TambahViewAdapater.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Inflater ItemTambahBinding;
-        return new ViewHolder(ItemTambahBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return null;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        int pos = holder.getAdapterPosition();
-        Tambah tambah = data.get(pos);
-        holder.itemTambahBinding.tvUser
+    public void onBindViewHolder(@NonNull TambahViewAdapater.ViewHolder holder, int position) {
 
     }
 
@@ -39,11 +36,8 @@ public class TambahViewAdapater extends RecyclerView.Adapter<TambahViewAdapater.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public Object itemTambahBinding;
-
-        public int getAdapterPosition() {
-
-
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
         }
     }
 }

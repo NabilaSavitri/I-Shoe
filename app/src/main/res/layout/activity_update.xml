@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TambahSepatuActivity">
+    tools:context=".UpdateActivity">
     <LinearLayout
         android:id="@+id/ll_TambahSepatu"
         android:layout_width="match_parent"
@@ -32,13 +32,13 @@
             android:layout_height="wrap_content"
             app:counterEnabled="true"
             app:counterMaxLength="180">
-        <EditText
-            android:id="@+id/et_Model"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Model Sepatu"
-            android:inputType="none"
-            android:maxLength="180"/>
+            <EditText
+                android:id="@+id/et_Model"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Model Sepatu"
+                android:inputType="none"
+                android:maxLength="180"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -117,7 +117,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btn_TambahSepatu"
+            android:id="@+id/btn_UpdateSepatu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add"
