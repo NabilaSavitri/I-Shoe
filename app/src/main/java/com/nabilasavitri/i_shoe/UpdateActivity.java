@@ -30,7 +30,7 @@ public class UpdateActivity extends AppCompatActivity {
         binding.etHarga.setText(tambah.getHargaPerPcsSepatu());
         binding.btnUpdateSepatu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 String MerekSepatu = binding.etMerek.getText().toString();
                 String ModelSepatu = binding.etModel.getText().toString();
                 String JenisSepatu = binding.etJenis.getText().toString();

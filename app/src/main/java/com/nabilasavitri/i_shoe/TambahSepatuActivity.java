@@ -5,12 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Toast;
 
 import com.nabilasavitri.i_shoe.databinding.ActivityTambahSepatuBinding;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TambahSepatuActivity extends AppCompatActivity {
 
     private ActivityTambahSepatuBinding binding;
+
+    public static void setData(List<Tambah> data) {
+    }
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,14 +31,14 @@ public class TambahSepatuActivity extends AppCompatActivity {
 
         binding.btnTambahSepatu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 String NamaMerekSepatu = binding.etMerek.getText().toString();
                 String ModelSepatu = binding.etModel.getText().toString();
                 String JenisSepatu = binding.etJenis.getText().toString();
                 String WarnaSepatu = binding.etWarna.getText().toString();
-                String UkuranSepatu = binding.etUkuran.getText().to();
-                String JumlahSepatu = binding.etJumlah.getText().to();
-                String HargaPerPcsSepatu = binding.etHarga.getText().to();
+                int UkuranSepatu = Integer.parseInt(binding.etUkuran.getText().toString());
+                int JumlahSepatu = Integer.parseInt(binding.etJumlah.getText().toString());
+                int HargaPerPcsSepatu = Integer.parseInt(binding.etHarga.getText().toString());
 
 
                 boolean bolehTambah = true;
@@ -48,56 +59,59 @@ public class TambahSepatuActivity extends AppCompatActivity {
                     bolehTambah = false;
                     binding.etWarna.setError("Konten tidak boleh kosong!");
                 }
-                if (TextUtils.isEmpty(UkuranSepatu)) {
+                if (UkuranSepatu == 0) {
                     bolehTambah = false;
                     binding.etUkuran.setError("Konten tidak boleh kosong!");
                 }
-                if (TextUtils.isEmpty(JumlahSepatu)) {
+                if (JumlahSepatu == 0) {
                     bolehTambah = false;
                     binding.etJumlah.setError("Konten tidak boleh kosong!");
                 }
-                if (TextUtils.isEmpty(HargaPerPcsSepatu)) {
+                if (HargaPerPcsSepatu == 0) {
                     bolehTambah = false;
                     binding.etHarga.setError("Konten tidak boleh kosong!");
                 }
 
 
-                if(bolehTambah) {
+                if (bolehTambah) {
                     String userId = Utilities.getValue(TambahSepatuActivity.this, "xUserId");
-                    addTambah(userId, NamaMerekSepatu);
-                }
-                if(bolehTambah) {
-                    String userId = Utilities.getValue(TambahSepatuActivity.this, "xUserId");
-                    addTambah(userId, ModelSepatu);
-                }
-                if(bolehTambah) {
-                    String userId = Utilities.getValue(TambahSepatuActivity.this, "xUserId");
-                    addTambah(userId,JenisSepatu);
-                }
-                if(bolehTambah) {
-                    String userId = Utilities.getValue(TambahSepatuActivity.this, "xUserId");
-                    addTambah(userId, WarnaSepatu);
-                }
-                if(bolehTambah) {
-                    String userId = Utilities.getValue(TambahSepatuActivity.this, "xUserId");
-                    addTambah(userId, UkuranSepatu);
-                }
-                if(bolehTambah) {
-                    String userId = Utilities.getValue(TambahSepatuActivity.this, "xUserId");
-                    addTambah(userId, JumlahSepatu);
-                }
-                if(bolehTambah) {
-                    String userId = Utilities.getValue(TambahSepatuActivity.this, "xUserId");
-                    addTambah(userId, HargaPerPcsSepatu);
+                    addTambah(userId, NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu);
                 }
             }
         });
     }
 
-    private void addTambah(String userId, String NamaMerekSepatu) {
+    private void addTambah(String userId, String NamaMerekSepatu, String ModelSepatu, String JenisSepatu, String WarnaSepatu, Integer UkuranSepatu, Integer JumlahSepatu, Integer HargaPerPcsSepatu) {
         binding.progressBar.setVisibility(View.VISIBLE);
-        //proses untuk mengunggah konten
-        binding.progressBar.setVisibility(View.GONE);
+        APIService api = Utilities.getRetrofit().create(APIService.class);
+        Call<ValueNoData> call = api.addTambah(NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu, userId);
+        call.enqueue(new Callback<ValueNoData>() {
+            @Override
+            public void onResponse(Call<ValueNoData> call, Response<ValueNoData> response) {
+                binding.progressBar.setVisibility(View.GONE);
+                if (response.code() == 200) {
+                    int success = response.body().getSuccess();
+                    String message = response.body().getMessage();
+
+                    if (success == 1) {
+                        Toast.makeText(TambahSepatuActivity.this, message, Toast.LENGTH_SHORT).show();
+                        finish();
+            }else {
+                        Toast.makeText(TambahSepatuActivity.this, message, Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(TambahSepatuActivity.this, "Response " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ValueNoData> call, Throwable t) {
+                binding.progressBar.setVisibility(View.GONE);
+                System.out.println("Retrofit Error : " + t.getMessage());
+                Toast.makeText(TambahSepatuActivity.this, "Retrofit Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     @Override

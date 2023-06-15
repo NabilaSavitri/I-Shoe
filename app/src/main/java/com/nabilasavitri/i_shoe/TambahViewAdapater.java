@@ -3,6 +3,7 @@ package com.nabilasavitri.i_shoe;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,9 +17,17 @@ import java.util.zip.Inflater;
 public class TambahViewAdapater extends RecyclerView.Adapter<TambahViewAdapater.ViewHolder> {
     private List<Tambah> data = new ArrayList<>();
 
+    private OnItemLongClickListener onItemLongClickListener;
+
+
+
     public void setData(List<Tambah> data) {
         this.data = data;
         notifyDataSetChanged();
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
     }
 
     @NonNull
@@ -39,6 +48,14 @@ public class TambahViewAdapater extends RecyclerView.Adapter<TambahViewAdapater.
         holder.itemTambahBinding.tvJumlahSepatu.setText(String.valueOf(tambah.getJumlahSepatu()));
         holder.itemTambahBinding.tvHargaPerPcsSepatu.setText(String.valueOf(tambah.getHargaPerPcsSepatu()));
 
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                onItemLongClickListener.onItemLongClick(view, tambah, pos);
+                return false;
+            }
+        });
+
 
     }
 
@@ -53,5 +70,8 @@ public class TambahViewAdapater extends RecyclerView.Adapter<TambahViewAdapater.
             super(itemView.getRoot());
             itemTambahBinding = itemView;
         }
+    }
+    public interface OnItemLongClickListener{
+        void onItemLongClick(View v, Tambah tambah, int position);
     }
 }

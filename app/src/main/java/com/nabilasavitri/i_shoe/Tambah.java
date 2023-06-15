@@ -1,9 +1,13 @@
 package com.nabilasavitri.i_shoe;
 
-public class Tambah {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Tambah implements Parcelable {
         private String Id;
         private String NamaMerekSepatu;
-
         private String ModelSepatu;
         private String JenisSepatu;
         private String WarnaSepatu;
@@ -12,12 +16,76 @@ public class Tambah {
         private Integer HargaPerPcsSepatu;
 
 
+    protected Tambah(Parcel in) {
+        Id = in.readString();
+        NamaMerekSepatu = in.readString();
+        ModelSepatu = in.readString();
+        JenisSepatu = in.readString();
+        WarnaSepatu = in.readString();
+        if (in.readByte() == 0) {
+            UkuranSepatu = null;
+        } else {
+            UkuranSepatu = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            JumlahSepatu = null;
+        } else {
+            JumlahSepatu = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            HargaPerPcsSepatu = null;
+        } else {
+            HargaPerPcsSepatu = in.readInt();
+        }
+    }
+    @Override
+    public void writeToParcel(Parcel dest, int flags){
+        dest.writeString(Id);
+        dest.writeString(NamaMerekSepatu);
+        dest.writeString(ModelSepatu);
+        dest.writeString(JenisSepatu);
+        dest.writeString(WarnaSepatu);
+        if (UkuranSepatu == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(UkuranSepatu);
+        }
+        if (JumlahSepatu == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(JumlahSepatu);
+        }
+        if (HargaPerPcsSepatu == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(HargaPerPcsSepatu);
+        }
+    }
+    @Override
+    public int describeContents(){return 0;}
+
+
+    public static final Creator<Tambah> CREATOR = new Creator<Tambah>() {
+        @Override
+        public Tambah createFromParcel(Parcel in) {
+            return new Tambah(in);
+        }
+
+        @Override
+        public Tambah[] newArray(int size) {
+            return new Tambah[size];
+        }
+    };
+
     public String getId() {
         return Id;
     }
 
-    public void setId(String Id) {
-        Id = Id;
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getNamaMerekSepatu() {
@@ -75,6 +143,7 @@ public class Tambah {
     public void setHargaPerPcsSepatu(Integer hargaPerPcsSepatu) {
         HargaPerPcsSepatu = hargaPerPcsSepatu;
     }
+
 }
 
 
