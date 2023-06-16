@@ -8,10 +8,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Utilities {
 
-    public static final  String PREFERENCE_FILE_KEY = Utilities.class.getPackage().getName();
-    private static final String BASE_URL = "";
-    
-    public static void  clearuser(Context context){
+    public static final String PREFERENCE_FILE_KEY = Utilities.class.getPackage().getName();
+    private static final String BASE_URL = "https://shoes-restapi.vercel.app/";
+
+    public static Retrofit retrofit;
+
+    public static Retrofit getRetrofit() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        }
+        return retrofit;
+    }
+
+    public static void clearuser(Context context) {
         SharedPreferences sp = context.getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("xUserId", null);
@@ -19,20 +31,23 @@ public class Utilities {
         editor.apply();
 
     }
-    public static void setValue(Context context, String xPref, String xValue){
-       SharedPreferences sp = context.getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
-       SharedPreferences.Editor editor = sp.edit();
-       editor.putString(xPref, xValue);
-       editor.apply();
+
+    public static void setValue(Context context, String xPref, String xValue) {
+        SharedPreferences sp = context.getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(xPref, xValue);
+        editor.apply();
     }
-    public static String getValue(Context context, String xPref){
+
+    public static String getValue(Context context, String xPref) {
         SharedPreferences sp = context.getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
         return sp.getString(xPref, null);
     }
-    public static boolean chechValue(Context context, String xPref){
+
+    public static boolean chechValue(Context context, String xPref) {
         SharedPreferences sp = context.getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
         String xValue = sp.getString(xPref, null);
-        return  xValue != null;
+        return xValue != null;
     }
 
     public static void clearUser(MainActivity mainActivity) {
