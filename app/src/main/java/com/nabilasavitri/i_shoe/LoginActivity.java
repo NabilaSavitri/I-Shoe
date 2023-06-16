@@ -43,9 +43,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 if (bolehLogin) {
-                    login(username, password); {
+                    login(username, password);
 
-                    }
                 }
             }
         });

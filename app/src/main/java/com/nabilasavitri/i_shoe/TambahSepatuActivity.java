@@ -19,8 +19,6 @@ public class TambahSepatuActivity extends AppCompatActivity {
 
     private ActivityTambahSepatuBinding binding;
 
-    public static void setData(List<Tambah> data) {
-    }
 
 
     protected void onCreate(Bundle savedInstanceState) {

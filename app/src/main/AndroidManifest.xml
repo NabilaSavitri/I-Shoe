@@ -13,26 +13,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.IShoe"
         tools:targetApi="31">
         <activity
             android:name=".UpdateActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.IShoe.ActionBar"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".TambahSepatuActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.IShoe.ActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SplashActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.IShoe"/>
         <activity
             android:name=".RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.IShoe"/>
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.IShoe"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.IShoe.ActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

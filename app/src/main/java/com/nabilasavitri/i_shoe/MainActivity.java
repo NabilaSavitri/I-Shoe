@@ -27,7 +27,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
-    private TambahViewAdapater tambahViewAdapater;
+    private TambaViewAdapter tambahViewAdapater;
 
     private List<Tambah> data;
 
@@ -44,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-        tambahViewAdapater = new TambahViewAdapater();
+        tambahViewAdapater = new TambaViewAdapter();
         binding.rvTambah.setLayoutManager(new LinearLayoutManager(this));
         binding.rvTambah.setAdapter(tambahViewAdapater);
 
-        TambahViewAdapater.OnItemLongClickListener(new TambahViewAdapater.OnItemLongClickListener() {
+        tambahViewAdapater.setOnItemLongClickListener(new TambaViewAdapter.OnItemLongClickListener() {
             @Override
-            public void onItemLongClick(View view, Tambah tambah, int position) {
+            public void onItemLongClick(View v, Tambah tambah, int position) {
                 PopupMenu popupMenu = new PopupMenu(MainActivity.this, v);
                 popupMenu.inflate(R.menu.menu);
                 popupMenu.setGravity(Gravity.RIGHT);
@@ -93,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         });
-
-
         binding.fabInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,19 +144,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ValueData<List<Tambah>>> call, Response<ValueData<List<Tambah>>> response) {
                 binding.progressBar.setVisibility(View.GONE);
-                if (response.code() == 200) {
+                if (response.code() == 200){
                     int success = response.body().getSuccess();
                     String message = response.body().getMessage();
 
-                    if (success == 1) {
-                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                    if (success == 1){
+                        Toast.makeText(MainActivity.this,message, Toast.LENGTH_SHORT).show();
                         data = response.body().getData();
-                        TambahSepatuActivity.setData(data);
-                    } else {
+                        tambahViewAdapater.setData(data);
+                    }else {
                         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(MainActivity.this, "Response "+ response.code(), Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "Response" + response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -167,8 +165,10 @@ public class MainActivity extends AppCompatActivity {
                 binding.progressBar.setVisibility(View.GONE);
                 System.out.println("Retrofit Error : " + t.getMessage());
                 Toast.makeText(MainActivity.this, "Retrofit Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
+        binding.progressBar.setVisibility(View.GONE);
     }
 
     @Override

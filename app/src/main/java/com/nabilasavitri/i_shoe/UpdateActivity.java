@@ -5,8 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Toast;
 
 import com.nabilasavitri.i_shoe.databinding.ActivityUpdateBinding;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UpdateActivity extends AppCompatActivity {
 
@@ -31,17 +36,17 @@ public class UpdateActivity extends AppCompatActivity {
         binding.btnUpdateSepatu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String MerekSepatu = binding.etMerek.getText().toString();
+                String NamaMerekSepatu = binding.etMerek.getText().toString();
                 String ModelSepatu = binding.etModel.getText().toString();
                 String JenisSepatu = binding.etJenis.getText().toString();
                 String WarnaSepatu = binding.etWarna.getText().toString();
                 int UkuranSepatu = Integer.parseInt(binding.etUkuran.getText().toString()) ;
                 int JumlahSepatu = Integer.parseInt(binding.etJumlah.getText().toString()) ;
-                int HargaSepatu = Integer.parseInt(binding.etHarga.getText().toString()) ;
+                int HargaPerPcsSepatu = Integer.parseInt(binding.etHarga.getText().toString()) ;
 
 
                 boolean tambahUpdate = true;
-                if (TextUtils.isEmpty(MerekSepatu)) {
+                if (TextUtils.isEmpty(NamaMerekSepatu)) {
                     tambahUpdate = false;
                     binding.etMerek.setError("Merek tidak boleh kosong!");
                 }
@@ -65,21 +70,52 @@ public class UpdateActivity extends AppCompatActivity {
                     tambahUpdate = false;
                     binding.etJumlah.setError("Jumlah tidak boleh kosong!");
                 }
-                if (HargaSepatu == 0) {
+                if (HargaPerPcsSepatu == 0) {
                     tambahUpdate = false;
                     binding.etHarga.setError("Harga tidak boleh kosong!");
                 }
                 if (tambahUpdate) {
-                    updateTambah(Id, MerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaSepatu);
+                    updateTambah(Id, NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu);
                 }
 
             }
         });
     }
 
-    private void updateTambah(String userId, String NamaMerek, String modelSepatu, String jenisSepatu, String warnaSepatu, int ukuranSepatu, int jumlahSepatu, int hargaSepatu) {
+    private void updateTambah(String Id, String NamaMerekSepatu, String ModelSepatu, String JenisSepatu, String WarnaSepatu, int UkuranSepatu, int JumlahSepatu, int HargaPerPcsSepatu) {
         binding.progressBar.setVisibility(View.VISIBLE);
+        APIService api = Utilities.getRetrofit().create(APIService.class);
+        Call<ValueNoData> call = api.updateTambah(Id,NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu);
         binding.progressBar.setVisibility(View.GONE);
+
+        call.enqueue(new Callback<ValueNoData>() {
+            @Override
+            public void onResponse(Call<ValueNoData> call, Response<ValueNoData> response) {
+                binding.progressBar.setVisibility(View.GONE);
+                if (response.code() == 200){
+                    int success = response.body().getSuccess();
+                    String message = response.body().getMessage();
+
+                    if (success == 1) {
+                        Toast.makeText(UpdateActivity.this, message, Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(UpdateActivity.this, message, Toast.LENGTH_SHORT).show();
+                    }
+
+                }else {
+                    Toast.makeText(UpdateActivity.this, "Response" + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ValueNoData> call, Throwable t) {
+                binding.progressBar.setVisibility(View.GONE);
+                System.out.println("Retrofit Error :" + t.getMessage());
+                Toast.makeText(UpdateActivity.this, "Retrofit Error :" + t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     @Override
