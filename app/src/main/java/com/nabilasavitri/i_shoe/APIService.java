@@ -52,8 +52,4 @@ public interface APIService {
     @DELETE("shoes/{id}")
     Call<ValueNoData> deleteTambah(@Path( "id") String id);
 
-
-
-
-
 }
