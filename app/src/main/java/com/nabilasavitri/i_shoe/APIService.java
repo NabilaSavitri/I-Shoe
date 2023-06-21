@@ -28,13 +28,13 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("sepatu")
-    Call<ValueNoData>addUnggah(@Field("NamaMerekSepatu")String NamaMerekSepatu,
+    Call<ValueNoData>addTambah(@Field("NamaMerekSepatu")String NamaMerekSepatu,
                                  @Field("ModelSepatu")String ModelSepatu,
                                  @Field("JenisSepatu")String Jenissepatu,
                                  @Field("WarnaSepatu")String WarnaSepatu,
                                  @Field("UkuranSepatu")Integer UkuranSepatu,
                                  @Field("JumlahSepatu")Integer JumlahSepatu,
-                                @Field("HargaPerPcsSepatu")Integer HargaPerPcsSepatu,
+                               @Field("HargaPerPcsSepatu")Integer HargaPerPcsSepatu,
                                 @Field("user_id")String user_id);
 
     @FormUrlEncoded
