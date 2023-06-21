@@ -26,44 +26,45 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:layout_marginTop="2dp"
             tools:text="NamaMerekSepatu"/>
 
         <TextView
             android:id="@+id/tv_ModelSepatu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:layout_below="@+id/tv_NamaMerekSepatu"
+            android:layout_marginTop="2dp"
             tools:text="ModelSepatu"/>
 
         <TextView
             android:id="@+id/tv_JenisSepatu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:layout_below="@+id/tv_ModelSepatu"
+            android:layout_marginTop="2dp"
             tools:text="JenisSepatu"/>
         <TextView
             android:id="@+id/tv_WarnaSepatu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:layout_below="@+id/tv_JenisSepatu"
+            android:layout_marginTop="2dp"
             tools:text="WarnaSepatu"/>
 
         <TextView
             android:id="@+id/tv_UkuranSepatu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:layout_below="@id/tv_WarnaSepatu"
+            android:layout_marginTop="2dp"
             tools:text="UkuranSepatu"/>
 
         <TextView
             android:id="@+id/tv_JumlahSepatu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_NamaMerekSepatu"
+            android:layout_below="@+id/tv_UkuranSepatu"
             android:layout_marginTop="2dp"
             android:text="JumlahSepatu"/>
 
@@ -71,7 +72,7 @@
             android:id="@+id/tv_HargaPerPcsSepatu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_NamaMerekSepatu"
+            android:layout_below="@+id/tv_JumlahSepatu"
             android:layout_marginTop="2dp"
             android:text="HargaPerPcsSepatu"/>
 

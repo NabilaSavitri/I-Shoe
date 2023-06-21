@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.nabilasavitri.i_shoe.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TambaViewAdapter tambahViewAdapater;
 
-    private List<Tambah> data;
+    private List<Tambah> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,45 +55,42 @@ public class MainActivity extends AppCompatActivity {
                 PopupMenu popupMenu = new PopupMenu(MainActivity.this, v);
                 popupMenu.inflate(R.menu.menu);
                 popupMenu.setGravity(Gravity.RIGHT);
-
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         int idMenu = menuItem.getItemId();
-                        if ((idMenu == R.id.action_edit)) {
+                        if (idMenu == R.id.action_edit) {
                             Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
                             intent.putExtra("EXTRA_DATA", tambah);
                             startActivity(intent);
                             return true;
                         } else if (idMenu == R.id.action_delete) {
                             String id = tambah.getId();
-                            androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                            builder.setTitle("Konfirmasi");
-                            builder.setMessage("Yakin ingin menghapus Add '" + data.get(position).getId() + "' ?");
-
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                            builder.setTitle("konfirmasi");
+                            builder.setMessage("yakin ingin menghapus" + data.get(position).getNamaMerekSepatu() + data.get(position).getModelSepatu() + data.get(position).getJenisSepatu() + data.get(position).getWarnaSepatu() + data.get(position).getUkuranSepatu() + data.get(position).getJumlahSepatu() + data.get(position).getHargaPerPcsSepatu() + "?");
                             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int which) {
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     deleteTambah(id);
-                                }
-                            });
-                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
                                 }
                             });
                             AlertDialog alertDialog = builder.create();
                             alertDialog.show();
                             return true;
-                        } else {
+
+                        }else {
                             return false;
                         }
+
                     }
+
                 });
                 popupMenu.show();
             }
+
         });
+
         binding.fabInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,9 +99,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getAllTambah();
+    }
     private void deleteTambah(String id) {
         APIService api = Utilities.getRetrofit().create(APIService.class);
-        Call<ValueNoData> call = api.deleteTambah(id);
+        Call<ValueNoData> call = api.deleteSepatu(id);
         call.enqueue(new Callback<ValueNoData>() {
             @Override
             public void onResponse(Call<ValueNoData> call, Response<ValueNoData> response) {
@@ -125,21 +128,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ValueNoData> call, Throwable t) {
                 System.out.println("Retrofit Error : " + t.getMessage());
-                Toast.makeText(MainActivity.this, "Retrofit Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Retrofit Error : ", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getAllTambah();
     }
 
     private void getAllTambah() {
         binding.progressBar.setVisibility(View.VISIBLE);
         APIService api = Utilities.getRetrofit().create(APIService.class);
-        Call<ValueData<List<Tambah>>> call = api.getTambah();
+        Call<ValueData<List<Tambah>>> call = api.getSepatu();
         call.enqueue(new Callback<ValueData<List<Tambah>>>() {
             @Override
             public void onResponse(Call<ValueData<List<Tambah>>> call, Response<ValueData<List<Tambah>>> response) {
@@ -156,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(MainActivity.this, "Response" + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Response", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -168,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        binding.progressBar.setVisibility(View.GONE);
     }
 
     @Override

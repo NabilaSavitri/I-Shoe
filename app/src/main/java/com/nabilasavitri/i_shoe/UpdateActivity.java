@@ -85,7 +85,7 @@ public class UpdateActivity extends AppCompatActivity {
     private void updateTambah(String Id, String NamaMerekSepatu, String ModelSepatu, String JenisSepatu, String WarnaSepatu, int UkuranSepatu, int JumlahSepatu, int HargaPerPcsSepatu) {
         binding.progressBar.setVisibility(View.VISIBLE);
         APIService api = Utilities.getRetrofit().create(APIService.class);
-        Call<ValueNoData> call = api.updateTambah(Id,NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu);
+        Call<ValueNoData> call = api.updateSepatu(Id,NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu);
         binding.progressBar.setVisibility(View.GONE);
 
         call.enqueue(new Callback<ValueNoData>() {

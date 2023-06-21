@@ -94,7 +94,7 @@ public class TambahSepatuActivity extends AppCompatActivity {
                     if (success == 1) {
                         Toast.makeText(TambahSepatuActivity.this, message, Toast.LENGTH_SHORT).show();
                         finish();
-            }else {
+                    }else {
                         Toast.makeText(TambahSepatuActivity.this, message, Toast.LENGTH_SHORT).show();
                     }
                 } else {

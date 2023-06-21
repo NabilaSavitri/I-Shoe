@@ -24,7 +24,7 @@ public class TambaViewAdapter extends RecyclerView.Adapter<TambaViewAdapter.View
 
 
 
-    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+    public void setOnItemLongClickListener(TambaViewAdapter.OnItemLongClickListener onItemLongClickListener) {
         this.onItemLongClickListener = onItemLongClickListener;
     }
 

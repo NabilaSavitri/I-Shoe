@@ -9,9 +9,6 @@ public class User implements Parcelable {
     private String Id;
     private String username;
 
-    public  User() {
-
-    }
 
     protected User(Parcel in) {
         Id = in.readString();

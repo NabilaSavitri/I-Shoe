@@ -16,6 +16,13 @@ public class Tambah implements Parcelable {
         private Integer HargaPerPcsSepatu;
 
 
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    private String user_id;
+
+
     protected Tambah(Parcel in) {
         Id = in.readString();
         NamaMerekSepatu = in.readString();
@@ -37,6 +44,7 @@ public class Tambah implements Parcelable {
         } else {
             HargaPerPcsSepatu = in.readInt();
         }
+        user_id = in.readString();
     }
     @Override
     public void writeToParcel(Parcel dest, int flags){
@@ -63,6 +71,7 @@ public class Tambah implements Parcelable {
             dest.writeByte((byte) 1);
             dest.writeInt(HargaPerPcsSepatu);
         }
+        dest.writeString(user_id);
     }
     @Override
     public int describeContents(){return 0;}
@@ -142,6 +151,10 @@ public class Tambah implements Parcelable {
 
     public void setHargaPerPcsSepatu(Integer hargaPerPcsSepatu) {
         HargaPerPcsSepatu = hargaPerPcsSepatu;
+    }
+
+    public String getUser_id() {
+        return user_id;
     }
 
 }

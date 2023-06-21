@@ -36,7 +36,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/till_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
@@ -58,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.Material3.Button.TextButton"
-            android:text="Belum punya akun?"
+            android:text="Belum punya akun? Silakan register dulu?"
             android:textAllCaps="false"
             android:textSize="14dp"/>
 

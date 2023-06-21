@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TambahSepatuActivity">
-    <LinearLayout
-        android:id="@+id/ll_TambahSepatu"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:padding="16dp">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -18,6 +16,7 @@
             android:layout_height="wrap_content"
             app:counterEnabled="true"
             app:counterMaxLength="180">
+
             <EditText
                 android:id="@+id/et_Merek"
                 android:layout_width="match_parent"
@@ -31,7 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="250"
+            android:layout_below="@+id/til_Merek">
         <EditText
             android:id="@+id/et_Model"
             android:layout_width="match_parent"
@@ -46,7 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="250"
+            android:layout_below="@+id/til_Model">
             <EditText
                 android:id="@+id/et_Jenis"
                 android:layout_width="match_parent"
@@ -61,7 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="250"
+            android:layout_below="@+id/til_Jenis">
             <EditText
                 android:id="@+id/et_Warna"
                 android:layout_width="match_parent"
@@ -76,7 +78,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="250"
+            android:layout_below="@+id/til_Warna">
             <EditText
                 android:id="@+id/et_Ukuran"
                 android:layout_width="match_parent"
@@ -91,7 +94,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="250"
+            android:layout_below="@+id/til_Ukuran">
             <EditText
                 android:id="@+id/et_Jumlah"
                 android:layout_width="match_parent"
@@ -106,14 +110,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="250"
+            android:layout_below="@+id/til_Jumlah">
             <EditText
                 android:id="@+id/et_Harga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Harga Per Pcs Sepatu"
+                android:hint="Harga per Pcs Sepatu"
                 android:inputType="none"
-                android:maxLength="180"/>
+                android:maxLength="250"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -123,6 +129,7 @@
             android:text="Tambah"
             android:textAllCaps="true"
             android:layout_alignParentEnd="true"
+            android:layout_below="@+id/til_Harga"
             android:layout_marginTop="16dp"/>
 
         <ProgressBar
@@ -133,6 +140,7 @@
             android:layout_marginTop="8dp"
             android:layout_centerHorizontal="true"
             android:visibility="gone"/>
-    </LinearLayout>
+    </RelativeLayout>
+
 
 </RelativeLayout>
