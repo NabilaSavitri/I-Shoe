@@ -6,18 +6,18 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class User implements Parcelable {
-    private String Id;
+    private String id;
     private String username;
 
 
     protected User(Parcel in) {
-        Id = in.readString();
+        id = in.readString();
         username = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags){
-        dest.writeString(Id);
+        dest.writeString(id);
         dest.writeString(username);
     }
 
@@ -39,11 +39,11 @@ public class User implements Parcelable {
     };
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        id = id;
     }
 
     public String getUsername() {

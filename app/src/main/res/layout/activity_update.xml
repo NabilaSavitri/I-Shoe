@@ -29,7 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="180"
+            android:layout_below="@id/til_Merek">
             <EditText
                 android:id="@+id/et_Model"
                 android:layout_width="match_parent"
@@ -44,7 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="180"
+            android:layout_below="@id/til_Model">
             <EditText
                 android:id="@+id/et_Jenis"
                 android:layout_width="match_parent"
@@ -59,7 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="180"
+            android:layout_below="@id/til_Jenis">
             <EditText
                 android:id="@+id/et_Warna"
                 android:layout_width="match_parent"
@@ -74,7 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="180"
+            android:layout_below="@id/til_Warna">
             <EditText
                 android:id="@+id/et_Ukuran"
                 android:layout_width="match_parent"
@@ -89,7 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="180"
+            android:layout_below="@id/til_Ukuran">
             <EditText
                 android:id="@+id/et_Jumlah"
                 android:layout_width="match_parent"
@@ -104,7 +109,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="180">
+            app:counterMaxLength="180"
+            android:layout_below="@id/til_Jumlah">
             <EditText
                 android:id="@+id/et_Harga"
                 android:layout_width="match_parent"

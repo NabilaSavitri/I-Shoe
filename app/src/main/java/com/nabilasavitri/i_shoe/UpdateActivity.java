@@ -25,14 +25,14 @@ public class UpdateActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         tambah = getIntent().getParcelableExtra("EXTRA_DATA");
-        String Id = tambah.getId();
+        String id = tambah.getId();
         binding.etMerek.setText(tambah.getNamaMerekSepatu());
-        binding.etModel.setText(tambah.getModelSepatu());
+        binding.etModel.setText(tambah.getModelSepatu()); 
         binding.etJenis.setText(tambah.getJenisSepatu());
         binding.etWarna.setText(tambah.getWarnaSepatu());
-        binding.etUkuran.setText(tambah.getUkuranSepatu());
-        binding.etJumlah.setText(tambah.getJumlahSepatu());
-        binding.etHarga.setText(tambah.getHargaPerPcsSepatu());
+       binding.etUkuran.setText(String.valueOf(tambah.getUkuranSepatu()));
+       binding.etJumlah.setText(String.valueOf(tambah.getJumlahSepatu()));
+      binding.etHarga.setText(String.valueOf(tambah.getHargaPerPcsSepatu()));
         binding.btnUpdateSepatu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,17 +75,17 @@ public class UpdateActivity extends AppCompatActivity {
                     binding.etHarga.setError("Harga tidak boleh kosong!");
                 }
                 if (tambahUpdate) {
-                    updateTambah(Id, NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu);
+                    updateTambah(id, NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu);
                 }
 
             }
         });
     }
 
-    private void updateTambah(String Id, String NamaMerekSepatu, String ModelSepatu, String JenisSepatu, String WarnaSepatu, int UkuranSepatu, int JumlahSepatu, int HargaPerPcsSepatu) {
+    private void updateTambah(String id, String NamaMerekSepatu, String ModelSepatu, String JenisSepatu, String WarnaSepatu, int UkuranSepatu, int JumlahSepatu, int HargaPerPcsSepatu) {
         binding.progressBar.setVisibility(View.VISIBLE);
         APIService api = Utilities.getRetrofit().create(APIService.class);
-        Call<ValueNoData> call = api.updateSepatu(Id,NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu);
+        Call<ValueNoData> call = api.updateSepatu(id,NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu);
         binding.progressBar.setVisibility(View.GONE);
 
         call.enqueue(new Callback<ValueNoData>() {

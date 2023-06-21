@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class Tambah implements Parcelable {
-        private String Id;
+        private String id;
         private String NamaMerekSepatu;
         private String ModelSepatu;
         private String JenisSepatu;
@@ -24,7 +24,7 @@ public class Tambah implements Parcelable {
 
 
     protected Tambah(Parcel in) {
-        Id = in.readString();
+        id = in.readString();
         NamaMerekSepatu = in.readString();
         ModelSepatu = in.readString();
         JenisSepatu = in.readString();
@@ -48,7 +48,7 @@ public class Tambah implements Parcelable {
     }
     @Override
     public void writeToParcel(Parcel dest, int flags){
-        dest.writeString(Id);
+        dest.writeString(id);
         dest.writeString(NamaMerekSepatu);
         dest.writeString(ModelSepatu);
         dest.writeString(JenisSepatu);
@@ -90,11 +90,11 @@ public class Tambah implements Parcelable {
     };
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        id = id;
     }
 
     public String getNamaMerekSepatu() {

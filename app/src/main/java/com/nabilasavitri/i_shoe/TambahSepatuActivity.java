@@ -72,17 +72,17 @@ public class TambahSepatuActivity extends AppCompatActivity {
 
 
                 if (bolehTambah) {
-                    String userId = Utilities.getValue(TambahSepatuActivity.this, "xUserId");
-                    addTambah(userId, NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu);
+                    String userid = Utilities.getValue(TambahSepatuActivity.this, "xUserId");
+                    addTambah(userid, NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu);
                 }
             }
         });
     }
 
-    private void addTambah(String userId, String NamaMerekSepatu, String ModelSepatu, String JenisSepatu, String WarnaSepatu, Integer UkuranSepatu, Integer JumlahSepatu, Integer HargaPerPcsSepatu) {
+    private void addTambah(String userid, String NamaMerekSepatu, String ModelSepatu, String JenisSepatu, String WarnaSepatu, Integer UkuranSepatu, Integer JumlahSepatu, Integer HargaPerPcsSepatu) {
         binding.progressBar.setVisibility(View.VISIBLE);
         APIService api = Utilities.getRetrofit().create(APIService.class);
-        Call<ValueNoData> call = api.addSepatu(NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu, userId);
+        Call<ValueNoData> call = api.addSepatu(NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu, userid);
         call.enqueue(new Callback<ValueNoData>() {
             @Override
             public void onResponse(Call<ValueNoData> call, Response<ValueNoData> response) {
