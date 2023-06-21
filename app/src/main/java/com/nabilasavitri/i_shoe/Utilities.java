@@ -44,7 +44,7 @@ public class Utilities {
         return sp.getString(xPref, null);
     }
 
-    public static boolean chechValue(Context context, String xPref) {
+    public static boolean checkValue(Context context, String xPref) {
         SharedPreferences sp = context.getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
         String xValue = sp.getString(xPref, null);
         return xValue != null;

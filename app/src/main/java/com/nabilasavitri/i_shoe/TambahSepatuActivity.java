@@ -82,7 +82,7 @@ public class TambahSepatuActivity extends AppCompatActivity {
     private void addTambah(String userId, String NamaMerekSepatu, String ModelSepatu, String JenisSepatu, String WarnaSepatu, Integer UkuranSepatu, Integer JumlahSepatu, Integer HargaPerPcsSepatu) {
         binding.progressBar.setVisibility(View.VISIBLE);
         APIService api = Utilities.getRetrofit().create(APIService.class);
-        Call<ValueNoData> call = api.addTambah(NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu, userId);
+        Call<ValueNoData> call = api.addSepatu(NamaMerekSepatu, ModelSepatu, JenisSepatu, WarnaSepatu, UkuranSepatu, JumlahSepatu, HargaPerPcsSepatu, userId);
         call.enqueue(new Callback<ValueNoData>() {
             @Override
             public void onResponse(Call<ValueNoData> call, Response<ValueNoData> response) {

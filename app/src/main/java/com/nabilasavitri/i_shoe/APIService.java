@@ -22,13 +22,13 @@ public interface APIService {
     Call<ValueData<User>>register(@Field("username")String username,
                                   @Field("password")String password);
 
-    @GET("sepatu")
+    @GET("i-shoes")
     Call<ValueData<List<Tambah>>> getSepatu();
 
 
     @FormUrlEncoded
-    @POST("sepatu")
-    Call<ValueNoData>addTambah(@Field("NamaMerekSepatu")String NamaMerekSepatu,
+    @POST("i-shoes")
+    Call<ValueNoData>addSepatu(@Field("NamaMerekSepatu")String NamaMerekSepatu,
                                  @Field("ModelSepatu")String ModelSepatu,
                                  @Field("JenisSepatu")String Jenissepatu,
                                  @Field("WarnaSepatu")String WarnaSepatu,
@@ -38,7 +38,7 @@ public interface APIService {
                                 @Field("user_id")String user_id);
 
     @FormUrlEncoded
-    @PUT("sepatu")
+    @PUT("i-shoes")
     Call<ValueNoData>updateSepatu(@Field("id")String id,
                             @Field("NamaMerekSepatu")String NamaMerekSepatu,
                                   @Field("ModelSepatu")String ModelSepatu,
@@ -49,7 +49,7 @@ public interface APIService {
                                   @Field("HargaPerPcsSepatu")Integer HargaPerPcsSepatu);
 
 
-    @DELETE("sepatu/{id}")
+    @DELETE("i-shoes/{id}")
     Call<ValueNoData> deleteSepatu(@Path( "id") String id);
 
 }

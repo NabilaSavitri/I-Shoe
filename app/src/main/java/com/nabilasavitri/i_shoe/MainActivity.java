@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        if (!Utilities.chechValue(MainActivity.this, "xUserId")) {
+        if (!Utilities.checkValue(MainActivity.this, "xUserId")) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 popupMenu.setGravity(Gravity.RIGHT);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        int idMenu = menuItem.getItemId();
+                    public boolean onMenuItemClick(MenuItem Item) {
+                        int idMenu = Item.getItemId();
                         if (idMenu == R.id.action_edit) {
                             Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
                             intent.putExtra("EXTRA_DATA", tambah);
@@ -71,8 +71,14 @@ public class MainActivity extends AppCompatActivity {
                             builder.setMessage("yakin ingin menghapus" + data.get(position).getNamaMerekSepatu() + data.get(position).getModelSepatu() + data.get(position).getJenisSepatu() + data.get(position).getWarnaSepatu() + data.get(position).getUkuranSepatu() + data.get(position).getJumlahSepatu() + data.get(position).getHargaPerPcsSepatu() + "?");
                             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+                                public void onClick(DialogInterface dialog, int which) {
                                     deleteTambah(id);
+                                }
+                            });
+                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
                                 }
                             });
                             AlertDialog alertDialog = builder.create();
