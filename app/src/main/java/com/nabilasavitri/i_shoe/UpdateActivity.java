@@ -27,7 +27,7 @@ public class UpdateActivity extends AppCompatActivity {
         tambah = getIntent().getParcelableExtra("EXTRA_DATA");
         String id = tambah.getId();
         binding.etMerek.setText(tambah.getNamaMerekSepatu());
-        binding.etModel.setText(tambah.getModelSepatu()); 
+        binding.etModel.setText(tambah.getModelSepatu());
         binding.etJenis.setText(tambah.getJenisSepatu());
         binding.etWarna.setText(tambah.getWarnaSepatu());
        binding.etUkuran.setText(String.valueOf(tambah.getUkuranSepatu()));
